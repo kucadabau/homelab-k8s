@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv-immich
+spec:
+  capacity:
+    storage: 1500Gi
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: nfs
+  csi:
+    driver: nfs.csi.k8s.io
+    volumeHandle: immich
+    volumeAttributes:
+      server: 192.168.1.10
+      share: /srv/data/immich

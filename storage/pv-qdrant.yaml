@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv-qdrant
+spec:
+  capacity:
+    storage: 50Gi
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: nfs
+  csi:
+    driver: nfs.csi.k8s.io
+    volumeHandle: qdrant
+    volumeAttributes:
+      server: 192.168.1.10
+      share: /srv/data/qdrant
